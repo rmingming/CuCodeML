@@ -18,7 +18,7 @@ SSE             	?= yes	# yes if your CPU support SSE, only available if HYBRID 
 
 
 CC = cc # cc, gcc, cl
-LIBS = -lm # -lM
+#LIBS = -lm # -lM
 NVCC = $(CUDA_INSTALL_PATH)/bin/nvcc
 NVLIBS = -L$(CUDA_INSTALL_PATH)/lib64 -L$(CUDA_INSTALL_PATH)/lib -lcudart
 NVFLAGS = -arch=sm_20
@@ -78,12 +78,13 @@ else
     NVFLAGS	+= -O3
 endif
 
+LIBS += -lm
 LDLIBS = $(LIBS)
 LDFLAGS += $(CFLAGS)
 
 OBJECTS += tools.o codeml.o
 $(PROG) : $(OBJECTS)
-	$(CC) $(LDFLAGS) $(LDLIBS) $(OBJECTS) -o $@
+	$(CC) $(LDFLAGS) $(OBJECTS) $(LDLIBS) -o $@
 
 tools.o : tools.c paml.h
 	$(CC) $(CFLAGS) -c tools.c

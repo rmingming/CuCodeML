@@ -73,7 +73,7 @@ int thread_pos0[NGENE][MAXCARD + 1];
 int thread_pos1[NGENE][MAXCARD + 1];
 
 double __attribute((aligned(0x10))) PMatAll[NNODE][64 * 64];
-double *__attribute((aligned(0x10))) nodes_conP[NNODE];
+double * nodes_conP[NNODE];
 #endif
 #endif
 
